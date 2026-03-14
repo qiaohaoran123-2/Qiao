@@ -3,10 +3,10 @@
 using namespace std;
 struct Node{int a,b;};
 struct node{int u,v,w;};
-const int minn=5e4+5,minm=1e4+5;
-int n,m,p[minm],C[minm],f[minm][25],dep[minm],c[minm][25],q,x,y;
-node a[minn];
-vector<Node>g[minn];
+const int maxm=5e4+5,maxn=1e4+5;
+int n,m,p[maxn],C[maxn],f[maxn][25],dep[maxn],c[maxn][25],q,x,y;
+node a[maxm];
+vector<Node>g[maxm];
 bool cmp(node a,node b){return a.w>b.w;}
 int getp(int x){return p[x]==x?x:p[x]=getp(p[x]);}
 void link(int x,int y){
@@ -32,7 +32,7 @@ Node lca(int u,int v){
     if(u!=v)ans=min(ans,c[u][0]),ans=min(c[v][0],ans);
     return {f[u][0],ans};
 }
-bool vis[minm];
+bool vis[maxn];
 signed main(){
     cin.tie(0)->sync_with_stdio(false);
     cin>>n>>m;
