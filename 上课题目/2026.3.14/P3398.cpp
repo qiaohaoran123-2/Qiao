@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int maxn=5e5+5;
+const int maxn=5e5+6;
 int n,m,s,f[maxn][25],u,v,dep[maxn],a,b,c,d,in[maxn],out[maxn];
 vector<int>g[maxn];
 void dfs(int u,int p){
