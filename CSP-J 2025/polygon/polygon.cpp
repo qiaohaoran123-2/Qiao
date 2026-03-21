@@ -2,7 +2,7 @@
 using namespace std;
 const int mod=998244353;
 long long n,a[5005],dp[5005][5005],ans,s=1;
-//dp[i][j]表示前i个木棍，选中其中一些，长度总和是j的情况下有多少方案
+//dp[i][j]表示前i个木棍,选中其中一些,长度总和是j的情况下有多少方案
 //dp[i][j]=
 int main(){
     ios::sync_with_stdio(false);
