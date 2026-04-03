@@ -86,7 +86,7 @@ https://csacademy.com/app/graph_editor/
 	u的每个子树都是单独的连通块
 	还有一个连通块是u上面的连通块
 
-	int m[maxn]; 
+	int m[maxn];
 	int dfs(int u, int p){
 		int C = 1,  		//C来计算u为根的子树大小 
 		for(auto v : G[u]){
