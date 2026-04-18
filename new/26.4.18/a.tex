@@ -1,0 +1,26 @@
+$$
+\def{\colorOfLine}{#000000}
+\def{\colorOfDivide}{#000000}
+\def{\colorOfName}{#000000}
+\def{\colorOfBox}{#000000}
+\def{\colorOfContent}{#ffffff}
+\newcommand{\item}[2]{\color{\colorOfName}\textbf{#1:}\text{#2} & }
+\newcommand{\add}[1]{
+    \fcolorbox{\colorOfBox}{\colorOfContent}{\normalsize\vphantom{+}\kern{#1 mm}}
+}
+\newcommand{\main}[6]{
+    \boxed{
+        \color{white}\begin{cases}
+        &\color{\colorOfLine}\kern{4pt}\begin{vmatrix}\raisebox{90pt}{}\kern{48.56mm}\end{vmatrix}\kern{-5.5pt}\begin{vmatrix}\raisebox{90pt}{}\kern{48.56mm}\end{vmatrix}  \\[-108pt]
+        &\color{\colorOfDivide}\scriptsize\kern{4 pt}\text{0}\kern{48.2 mm}\text{50}\kern{47 mm}\text{100} \\[3pt]
+        \item{基础信用}{#1} \add{#1} \\[3pt]
+        \item{练习情况}{#2} \add{#2} \\[3pt]
+        \item{社区贡献}{#3} \add{#3} \\[3pt]
+        \item{比赛情况}{#4} \add{#4} \\[3pt]
+        \item{获得成就}{#5} \add{#5} \\[3pt]
+       \color{\colorOfName}\textbf{总估值:\kern{10pt}#6}
+        \end{cases}
+    }
+}
+\main{100}{52}{13}{59}{0}{224}
+$$
