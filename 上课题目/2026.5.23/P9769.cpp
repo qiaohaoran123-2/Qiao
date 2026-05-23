@@ -11,9 +11,9 @@ int main()
 	dq.push_back(0);
 	for(int i = 1; i <= y; i++)
 	{
-		dp[i] = dp[dq.front()] + 1; 	//¼Ó·¨µÄ×ªÒÆ
+		dp[i] = dp[dq.front()] + 1; 	//åŠ æ³•çš„è½¬ç§»
 		for(int j = 1; j <= m; j++) if(i % B[j] == 0 && B[j] > 1)
-			dp[i] = min(dp[i], dp[i / B[j]] + 1);  	//³Ë·¨µÄ×ªÒÆ
+			dp[i] = min(dp[i], dp[i / B[j]] + 1);  	//ä¹˜æ³•çš„è½¬ç§»
 		while(!dq.empty() && dp[i] <= dp[dq.back()])
 			dq.pop_back();
 		while(!dq.empty() && i - dq.front() >= n)
@@ -23,4 +23,3 @@ int main()
 	cout << dp[y];
 	return 0;
 }
-
