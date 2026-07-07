@@ -1,0 +1,46 @@
+哈希 Hash
+
+线性哈希：取模
+unordered_set 			set
+unordered_map  			map
+
+数字范围 -2^31 ~ 2^31-1
+数量 5e4
+每输入一个数字x，把它对一个固定的数字M取模
+M比数字的总数稍大一些
+vector<int> A[0...M-1]   A[i] 是一个链表
+A[x % M].push_back(x) 	 插入数字
+
+删除数字：先通过x%M找到链表
+			在链表中删除x
+		把最后一个元素交换到x的位置，然后pop_back
+
+查找数字
+
+平均意义下，插入、删除、查找的时间复杂度O(1) 
+
+如果原本两个不一样的数字，哈希之后的数字是一样的
+称为哈希冲突
+
+如果两个数字一样，那么它们的哈希值一定相同
+如果两个哈希值相同，那么它们原本的数字不一定相同
+如果两个哈希值不同，那么它们原本的数字一定不相同
+
+无序集合unordered_set，不存在重复元素 
+unordered_set<int> S;
+插入 	S.insert(x)
+删除 	S.erase(x)
+查找 	S.find(x) 		返回值是迭代器
+				S.find(x) != s.end() 就是找到了
+		S.count(x) 		返回值是1或0
+遍历 	for(auto x : S) cout << x << " ";
+		和set的区别：遍历输出的数字没有顺序
+		
+unordered_map<int, int> M;
+		for(auto x : M) 	x的类型是pair<int, int>
+			cout << x.first << " " x.second << endl;
+					键 				值
+					
+什么样的数据类型可以作为
+	map的键？ 				可以比较大小
+	unordered_map的键？ 	有哈希的方法
