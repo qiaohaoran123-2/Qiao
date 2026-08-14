@@ -1,0 +1,97 @@
+强连通分量
+
+有向图中： 
+两个点强连通：u到v和v到u都有路径
+如果一个节点的集合内
+	任意两点都强连通
+	这个点集称为 强连通分量
+	
+	Strongly Connected Component
+	SCC
+DAG有n个强连通分量，每个强连通分量都是单点 
+	
+求SCC的Tarjan算法
+准备工作：9个变量
+	int dfn[maxn], tid, low[maxn];
+		dfn[u]：节点u的dfs序号
+		tid：时间戳
+		low[u]：从u出发能访问到的所有点的最小的dfn
+	int s[maxn], tp, ins[maxn];
+		s：栈，保存当前dfs子树中的节点
+		tp：栈顶
+		ins[maxn]：ins[u]表示u是否在当前的栈中
+	vector<int> scc[maxn];
+		scc[i]：第i个强连通分量中有哪些节点
+	int sc, sid[maxn];
+		sc：有几个强连通分量
+		sid[u]：u属于第几号强连通分量
+		
+void tarjan(int u)
+{
+	dfn[u] = low[u] = ++tid;
+	s[++tp] = u; ins[u] = 1;
+	for(auto v : G[u])
+	{
+		if(!dfn[v])
+		{
+			tarjan(v);
+			low[u] = min(low[u], low[v]);
+		}
+		else if(ins[v])
+			low[u] = min(low[u], dfn[v]);
+	}
+	if(dfn[u] <= low[u])
+	{
+		sc++;
+		do 
+		{
+			scc[sc].push_back(s[tp]);
+			sid[s[tp]] = sc;
+			ins[s[tp]] = 0;
+		}
+		while(s[tp--] != u);
+	}
+} 
+
+P3387
+	缩点：把强连通分量中所有的点 缩小为一个新的点
+	新点的权值，是原图中这个SCC里所有点的权值之和
+	原图中，u属于第a个SCC，v属于第b个SCC
+	那么原图中u->v这条边，在新图中是a->b这条边
+	
+	缩点后的新图是DAG
+	
+	主函数的内容：
+		输入点权
+		建图
+		对每个未访问的点执行tarjan算法
+		缩点，建新图
+		在新图上进行拓扑排序，求最长路
+		
+		
+P1726
+	求最大的强连通分量
+	用到scc，不需要sid
+	
+P2835
+	入度为0的点，必须要分发光盘
+	统计入度为0的点的个数，但是答案是错的
+	
+	这是因为上面的算法对DAG是对的，对于有环的图是错误的
+	强连通分量+缩点
+	
+P1073
+	DAG上的动态规划
+	dp[u][1]表示在u城市，买入水晶球后的最大收益 
+	dp[u][2]表示在u城市，卖出水晶球后的最大收益
+	
+	原图不一定是DAG，需要缩点
+		缩点后，新点的买入价是原图scc的最小买入价
+		新点的卖出价是原图scc的最大卖出价
+		
+P1262
+	是否可以：dfs判断连通性
+	最小价格：DAG找到所有入度为0的节点，都收买即可
+	
+	如果不是DAG，需要缩点
+		收买价格为scc中价格最小的人 
